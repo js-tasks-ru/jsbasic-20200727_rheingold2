@@ -5,4 +5,6 @@
  */
 function getMinMax(str) {
   // ваш код...
+  let NumberArr = str.split(',').join(' ').split(' ').filter( item => !isNaN( parseFloat(item) ) );
+  return { min: Math.min(...NumberArr), max: Math.max(...NumberArr) };
 }
