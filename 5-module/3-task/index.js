@@ -15,7 +15,7 @@ function initCarousel() {
       arrowRight.style.display='none';
     }
     
-    carouselOffset -= carouselImg[carouselCount].offsetWidth;
+    carouselOffset -= carouselInner.offsetWidth;
     carouselInner.style.transform = `translateX(${carouselOffset}px)`;
 
     if(arrowRLeft.style.display === 'none') {arrowRLeft.style.display=''} 
@@ -26,7 +26,7 @@ function initCarousel() {
     if(carouselCount <= 0){
       arrowRLeft.style.display='none';
     }
-    carouselOffset += carouselImg[carouselCount].offsetWidth;
+    carouselOffset += carouselInner.offsetWidth;
     carouselInner.style.transform = `translateX(${carouselOffset}px)`;
 
     if(arrowRight.style.display === 'none') {arrowRight.style.display=''} ;
