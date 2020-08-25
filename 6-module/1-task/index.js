@@ -48,7 +48,7 @@ export default class UserTable {
   }
   addButtons(elem){
     let newTd = document.createElement('td');
-    newTd.innerHTML = `<button data-delete-row='truenpm te'> X </button>`;
+    newTd.innerHTML = `<button data-delete-row='true'> X </button>`;
     for( let row of elem.tBodies[0].rows){
       row.append(newTd.cloneNode(true));
     }
@@ -56,7 +56,6 @@ export default class UserTable {
   addIvent(elem){
     elem.addEventListener('click', (event)=>{
       if(!event.target.dataset.deleteRow) {return};
-      let h123 = event.target.closest('tr');
       event.target.closest('tr').remove();
     })
   }

@@ -8,7 +8,7 @@ export default class ProductCard {
     this.addPrice(this.elem, product.price)
     this.CustomEvent(this.elem, product.id);
   }
-  //у меня такое ощущение что я зря разбиваю создание карточки на отдельные методы, или так все-таки правильно ?
+  
   createCard(elem){
     elem.className = 'card';
     elem.insertAdjacentHTML('afterbegin',`
@@ -35,7 +35,6 @@ export default class ProductCard {
   CustomEvent(elem, productId){
     elem.querySelector('.card__button').addEventListener('click', (event)=>{
       let productEvent =new CustomEvent("product-add", { detail: productId, ubbles: true });
-      //elem.dispatchEvent(productEvent);
       document.body.dispatchEvent(productEvent);
     })
   }
