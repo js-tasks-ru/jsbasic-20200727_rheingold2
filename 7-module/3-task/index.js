@@ -28,6 +28,8 @@ export default class StepSlider {
     sliderSteps.querySelector('span').className='slider__step-active'
   }
 
+  //решил сам как мог =) (не знаю насколько это хорошее решение)
+
   _closestStep(event){
       let stepsCol = this.elem.querySelector('.slider__steps').querySelectorAll('span');
       let stepsArr = Array.from(stepsCol);
@@ -63,9 +65,9 @@ export default class StepSlider {
     })
   }
   _sliderCustomEvent(value){
-    let change = new CustomEvent('slider-change', { // имя события должно быть именно 'slider-change'
-      detail: value, // значение 0, 1, 2, 3, 4
-      bubbles: true // событие всплывает - это понадобится в дальнейшем
+    let change = new CustomEvent('slider-change', { 
+      detail: value, 
+      bubbles: true 
     });
     this.elem.dispatchEvent(change);
   }
