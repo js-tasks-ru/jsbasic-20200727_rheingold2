@@ -61,18 +61,13 @@ export default class StepSlider {
     if(event.target === sliderThumb){
       document.documentElement.addEventListener('pointermove', this.sliderMoveAt );
     }
-    document.documentElement.addEventListener('pointerup', this._removeEvents)//(event)=>{
-      //document.documentElement.removeEventListener('pointermove', this.sliderMoveAt );
-      //this._selectClosestStep(event);
-      //this.elem.classList.remove('slider_dragging');
-    //})
-    
+    document.documentElement.addEventListener('pointerup', this._removeEvents);
   }
   _removeEvents = (event)=>{
     document.documentElement.removeEventListener('pointermove', this.sliderMoveAt );
     this._selectClosestStep(event);
     this.elem.classList.remove('slider_dragging');
-    document.documentElement.removeEventListener('pointerup', this._removeEvent );
+    document.documentElement.removeEventListener('pointerup', this._removeEvents );
   }
 
    sliderMoveAt = (event)=>{
