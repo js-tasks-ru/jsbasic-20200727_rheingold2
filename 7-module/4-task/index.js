@@ -58,18 +58,21 @@ export default class StepSlider {
     sliderThumb.ondragstar = ()=> false;
     sliderThumb.style.position = 'absolute';
     sliderThumb.style.zIndex = 10;
-    //slider.addEventListener('click', (event)=>{
-      //this._selectClosestStep(event);
-    //});
     if(event.target === sliderThumb){
       document.documentElement.addEventListener('pointermove', this.sliderMoveAt );
     }
-    document.documentElement.addEventListener('pointerup', (event)=>{
-      document.documentElement.removeEventListener('pointermove', this.sliderMoveAt );
-      this._selectClosestStep(event);
-      this.elem.classList.remove('slider_dragging');
-    })
+    document.documentElement.addEventListener('pointerup', this._removeEvents)//(event)=>{
+      //document.documentElement.removeEventListener('pointermove', this.sliderMoveAt );
+      //this._selectClosestStep(event);
+      //this.elem.classList.remove('slider_dragging');
+    //})
     
+  }
+  _removeEvents = (event)=>{
+    document.documentElement.removeEventListener('pointermove', this.sliderMoveAt );
+    this._selectClosestStep(event);
+    this.elem.classList.remove('slider_dragging');
+    document.documentElement.removeEventListener('pointerup', this._removeEvent );
   }
 
    sliderMoveAt = (event)=>{
