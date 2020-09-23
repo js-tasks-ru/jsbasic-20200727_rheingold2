@@ -8,7 +8,6 @@ export default class StepSlider {
     this._createSliderSteps();
     this._prevStep = null; 
     this.elem.addEventListener('pointerdown', ()=>{
-      this.elem.classList.add('slider_dragging');
       this._sliderMove(event)
     });
     this.elem.addEventListener('click', ()=>{
@@ -53,14 +52,15 @@ export default class StepSlider {
   }
 
   _sliderMove(event){
+    this.elem.classList.add('slider_dragging');
     let slider = document.body.querySelector('.slider');
     let sliderThumb = slider.querySelector('.slider__thumb');
     sliderThumb.ondragstar = ()=> false;
     sliderThumb.style.position = 'absolute';
     sliderThumb.style.zIndex = 10;
-    slider.addEventListener('click', (event)=>{
-      this._selectClosestStep(event);
-    });
+    //slider.addEventListener('click', (event)=>{
+      //this._selectClosestStep(event);
+    //});
     if(event.target === sliderThumb){
       document.documentElement.addEventListener('pointermove', this.sliderMoveAt );
     }
