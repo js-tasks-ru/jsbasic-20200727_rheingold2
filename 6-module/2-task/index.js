@@ -7,6 +7,7 @@ export default class ProductCard {
     this.addImgPath(this.elem, product.image);
     this.addPrice(this.elem, product.price)
     this.CustomEvent(this.elem, product.id);
+    this.addCardTitle(this.elem, product.name)
   }
   
   createCard(elem){
@@ -17,7 +18,7 @@ export default class ProductCard {
          <span class="card__price">€</span>
       </div>
        <div class="card__body">
-        <div class="card__title">Laab kai chicken salad</div>
+        <div class="card__title"></div>
         <button type="button" class="card__button">
           <img src="/assets/images/icons/plus-icon.svg" alt="icon">
         </button>
@@ -31,6 +32,9 @@ export default class ProductCard {
   addPrice(elem, price){
     let fixedPrice = price.toFixed(2);
     elem.querySelector('.card__price').insertAdjacentText('beforeend',`${fixedPrice}`);
+  }
+  addCardTitle(elem, title){
+    elem.querySelector('.card__title').insertAdjacentText('afterbegin',`${title}`);
   }
   CustomEvent(elem, productId){
     elem.querySelector('.card__button').addEventListener('click', (event)=>{
