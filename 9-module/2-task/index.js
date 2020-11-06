@@ -61,25 +61,29 @@ export default class Main {
     });
   }
 
-  addEventListeners(){
+  productAddEvent(){
     document.body.addEventListener('product-add', (event)=>{
       let productId = event.detail;
       let product = this.products.find( (item)=>item.id === productId);
       this.cart.addProduct(product);
     })
-
+  }
+  sliderChangeEvent(){
     document.body.addEventListener('slider-change', (event)=>{
       this.productGrid.updateFilter({
         maxSpiciness: event.detail
       })
     })
-
+  }
+  ribbonSelectEvent(){
     document.body.addEventListener('ribbon-select', (event)=>{
       this.productGrid.updateFilter({
         category: event.detail
       })
     })
+  }
 
+  nutsCheckboxEvent(){
     let nutsCheckbox = document.getElementById('nuts-checkbox');
 
     nutsCheckbox.addEventListener('change', ()=>{
@@ -87,7 +91,9 @@ export default class Main {
         noNuts: nutsCheckbox.checked
       });
     });
+  }
 
+  vegeterianCheckboxEvent(){
     let vegeterianCheckbox = document.getElementById('vegeterian-checkbox');
 
     vegeterianCheckbox.addEventListener('change', ()=>{
@@ -96,5 +102,14 @@ export default class Main {
       });
     });
   }
+
+  addEventListeners(){
+    this.productAddEvent();
+    this.sliderChangeEvent();
+    this.ribbonSelectEvent();
+    this.nutsCheckboxEvent();
+    this.vegeterianCheckboxEvent();
+  }
+
 
 }
