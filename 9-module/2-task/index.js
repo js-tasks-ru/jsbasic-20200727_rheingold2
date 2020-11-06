@@ -35,7 +35,7 @@ export default class Main {
     elem.append(this.productGrid.elem);
     this.updateFilter();
     
-    return new Promise( res=> res() );
+    return //new Promise( res=> res() );
   }
   async productList(){
     try{
