@@ -38,7 +38,7 @@ export default class ProductCard {
   }
   CustomEvent(elem, productId){
     elem.querySelector('.card__button').addEventListener('click', (event)=>{
-      let productEvent =new CustomEvent("product-add", { detail: productId, ubbles: true });
+      let productEvent =new CustomEvent("product-add", { detail: productId, bubbles: true });
       document.body.dispatchEvent(productEvent);
     })
   }

@@ -1,5 +1,5 @@
 export default class StepSlider {
-  constructor({ steps, value = 0 }) {
+  constructor({steps, value}) {
     this.steps = steps;
     this.value = value;
     this.elem = document.createElement('div');
@@ -24,15 +24,31 @@ export default class StepSlider {
       </div>
     `)
   }
+
   _createSliderSteps(){
     let sliderSteps = this.elem.querySelector('.slider__steps');
     let span = document.createElement('span');
     for(let i=0; i<this.steps; i++){
       sliderSteps.append(span.cloneNode('false'));
     }
-    sliderSteps.querySelector('span').className='slider__step-active'
+    if(this.value) {
+      this._setValues();
+    }else{
+      sliderSteps.querySelector('span').className='slider__step-active';
+    }
   }
+_setValues(){
+  let sliderSteps = this.elem.querySelector('.slider__steps');
+  sliderSteps.querySelectorAll('span')[this.value].className='slider__step-active';
 
+  this.elem.querySelector('.slider__value').innerHTML = this.value;
+
+  let sliderThumb = this.elem.querySelector('.slider__thumb');
+  sliderThumb.style.left = (this.value*100/(this.steps-1) )+'%';
+
+  let sliderProgress = this.elem.querySelector('.slider__progress');
+  sliderProgress.style.width = (this.value*100/(this.steps-1) )+'%';
+}
   _closestStep(event){
       let stepsCol = this.elem.querySelector('.slider__steps').querySelectorAll('span');
       let stepsArr = Array.from(stepsCol);

@@ -42,6 +42,7 @@ export default class CartIcon {
     this.elem.style.position = 'fixed';
     this.elem.style.top = 50 +'px';
     this.elem.style.left = container.getBoundingClientRect().right+ 20 +'px';
+    this.elem.style.zIndex = 10;
   }
   leftSpace(){
     let container = document.body.querySelector('.container');

@@ -39,7 +39,7 @@ export default class ProductGrid {
 
   vegeterianOnlyFilter(products){
     products = products.filter( (productObj)=>{ 
-      return productObj['vegeterian'] !== undefined || productObj['nvegeterian'] === true;
+      return productObj['vegeterian'] !== undefined && productObj['vegeterian'] === true;
     })
     return products;
   }
@@ -70,7 +70,7 @@ export default class ProductGrid {
     if ( objFilters.includes('maxSpiciness') ) {
       products = this.maxSpicinessFilter(products, filters['maxSpiciness']);
     }
-    if ( objFilters.includes('category') && filters['category'].length !== 0) {
+    if ( objFilters.includes('category') && filters['category'].length !== 0 && filters['category'] !== 'All' ) {
       products = this.categoryFilter(products, filters['category']);
     }
 
