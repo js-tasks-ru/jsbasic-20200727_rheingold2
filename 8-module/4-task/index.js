@@ -119,22 +119,31 @@ export default class Cart {
     </form>`);
   }
 
-  selectClosestProduct(eventTarget){
-
-  }
   renderModal() {
     // ...ваш код
     this.modal = new Modal();
     this.modal.open();
     this.modal.setTitle("Your order");
     this.orderlist = document.createElement('div');
+    this.orderlist.classList.add('cart-body');
+
+    let cartList = document.createElement('div');
+    cartList.classList.add('cart-items');
+    this.orderlist.append(cartList);
+
     this.cartItems.forEach(item =>{
-      this.orderlist.append( this.renderProduct(item, item.count) );
+      cartList.append( this.renderProduct(item, item.count) );
     })
 
     this.orderlist.append( this.renderOrderForm() );
 
     this.modal.setBody(this.orderlist);
+
+    let modalTopHeight = document.body.querySelector('.modal__inner').getBoundingClientRect().top;
+    if(modalTopHeight <= 0){
+      this.addItemScroll();
+    }
+
     this.orderlist.addEventListener('click', event=>{
       let eventTargetClass = event.target.closest('button');
       if(eventTargetClass === null){ return; }
@@ -147,9 +156,7 @@ export default class Cart {
         this.updateProductCount(itemId, 1);
       }
     })
-    let h123 = this.orderlist.querySelector('.cart-form');
     this.orderlist.querySelector('.cart-form').addEventListener('submit', (event)=>this.onSubmit(event));
-    //this.onSubmit(event);
   }
 
   onProductUpdate(cartItem, productId) {
@@ -211,5 +218,24 @@ export default class Cart {
   addEventListeners() {
     this.cartIcon.elem.onclick = () => this.renderModal();
   }
+  
+  addItemScroll(){
+
+    let cart = this.orderlist.querySelector('.cart-items')
+    let modalHeight = document.body.querySelector('.modal__header').offsetHeight;  
+    let formHeight = this.orderlist.querySelector('.cart-form').offsetHeight;  
+    let windowHeight = document.documentElement.clientHeight;
+
+    cart.style.overflow = 'auto';
+    cart.style.maxHeight = windowHeight - modalHeight - formHeight -40 + 'px';
+    cart.style.marginBottom = '10px';
+    
+    let modalInner = document.body.querySelector('.modal__inner');
+    modalInner.style.maxHeight = document.documentElement.clientHeight-10+'px';
+
+    let modalbody= document.body.querySelector('.modal__body');
+    modalbody.style.overflow = 'hidden';
+  }
+
 }
 
