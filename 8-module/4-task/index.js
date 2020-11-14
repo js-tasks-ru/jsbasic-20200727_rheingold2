@@ -235,6 +235,7 @@ export default class Cart {
 
     let modalbody= document.body.querySelector('.modal__body');
     modalbody.style.overflow = 'hidden';
+
   }
 
 }
