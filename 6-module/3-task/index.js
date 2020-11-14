@@ -97,7 +97,7 @@ export default class Carousel {
         let productId = button.closest('div.carousel__slide').getAttribute('data-id');
         if (!productId){return};
 
-        let productEvent =new CustomEvent("product-add", { detail: productId, ubbles: true });
+        let productEvent =new CustomEvent("product-add", { detail: productId, bubles: true });
         document.body.dispatchEvent(productEvent);
       }
       return;

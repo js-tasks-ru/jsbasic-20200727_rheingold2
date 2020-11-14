@@ -6,10 +6,12 @@ export default class RibbonMenu {
     this._createmainElements();
     this._createArrows();
     this._addNavItems(categories);
+    this.selectedItem = this._navElem.childNodes[0];
+    this.selectedItem.classList.add('ribbon__item_active');
     this._addArrowEvents();
     this._scrollEvent();
     this._selectItemEvents();
-    this._prevSelectedItem = null;
+    this._prevSelectedItem = this.selectedItem;
   }
   _createmainElements(){
     this.elem = document.createElement('div');
@@ -90,7 +92,7 @@ export default class RibbonMenu {
         if(this._prevSelectedItem != null && this._prevSelectedItem != event.target){
           this._prevSelectedItem.classList.remove('ribbon__item_active');
         }
-
+        this.selectedItem = event.target;
         event.target.classList.add('ribbon__item_active');
         this._prevSelectedItem = event.target;
       }
